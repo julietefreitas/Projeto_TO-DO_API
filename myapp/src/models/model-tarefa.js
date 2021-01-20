@@ -1,0 +1,10 @@
+class modelTarefa {
+  constructor(titulo,descricao,status,dataDeCriacao) {
+    this.titulo = titulo;
+    this.descricao = descricao;
+    this.status = status;
+    this.dataDeCriacao = dataDeCriacao;
+  }
+}
+
+module.exports = modelTarefa;
