@@ -1,14 +1,15 @@
-
+const Usuario = require('../models/model-usuario');
 
 module.exports = (app , bd) => {
-  app.get('/usuario', (req, res) => {
-    res.send('Rota ativada com POST e recurso USUÁRIO sendo retornado usando POST');
+  app.get('/usuario', (req, resp) => {
+    console.log('Rota ativada com GET e recurso retornando um objeto JSON');
+    resp.send(bd.usuario);
   });
 
   app.post('/usuario', (req, resp) => {
-    console.log(`Corpo da Requisição: ${req.body.nome}`);
-    bd.usuario
-    resp.send("Ok!");
+    resp.send("Rota ativada com POST");
+    const user = new Usuario(req.body.nome, req.body.email, req.body.senha);
+    bd.usuario.push(user);
   })
 }
 
