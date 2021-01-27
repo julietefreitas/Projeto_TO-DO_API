@@ -21,13 +21,35 @@ module.exports = (app , bd) => {
     //bd.usuario.push(preencherBanco());
   });
 
+
   app.post('/usuario', (req, resp) => {
     const user = new Usuario(req.body.nome, req.body.email, req.body.senha);
     //bd.usuario.push(preencherBanco());
     resp.send("Rota ativada com POST");
   });
 
-    
+  app.delete('/usuario/:email', (req, resp) => {
+    const email = req.params.email;
+    for (let i= 0; i< bd.usuario.length; i++) {
+      if (bd.usuario[i].email == email) {
+        bd.usuario.splice(i,1);
+        resp.send("<h3>Usuário excluído com sucesso</h3>")  
+      }
+    }
+  }) ; 
+
+  app.put('/usuario/:email', (req,resp) => {
+    const email = req.params.email;
+    for (let i = 0; i < bd.usuario.length; i++) {
+      if(bd.usuario[i].email == email) {
+        bd.usuario[i].nome = req.body.nome;
+        bd.usuario[i].senha = req.body.senha;
+        resp.send(`<h3>Registro: Nome e Senha do usuário com email ${email} foram atualizados</h3>`);
+      }
+    }
+  })
+
+
   }
 
 
