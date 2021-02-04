@@ -1,17 +1,18 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const cors = require('cors');
 const bodyParser = require('body-parser');
-const bd = require('./infra/bd');
-
 const usuarioControler = require('./controllers/usuario-controller');
 const tarefaControler = require ('./controllers/tarefa-controller');
+const port = 8000;
+
 
 app.use(bodyParser.json());
+app.use(cors());
 
-usuarioControler(app, bd);
-tarefaControler(app, bd);
+usuarioControler(app);
+tarefaControler(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Servidor rodando no endereço http://localhost:${port}`);
 });  
