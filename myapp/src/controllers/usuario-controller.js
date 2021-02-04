@@ -1,53 +1,49 @@
-const Usuario = require('../models/model-usuario');
+const UsuariosDAO = require ('../DAO/usuario-dao');
+const bd = require('../infra/sqlite-db');
+const usuario = new UsuariosDAO(bd);
 
-module.exports = (app , bd) => {
+module.exports = (app) => {
 
-  app.get('/usuario', (req, resp) => {
-    console.log('Rota ativada com GET e recurso retornando um objeto JSON');
-    console.log(bd.usuario)
-    resp.send(bd.usuario);
+
+  app.get('/usuario', async (req, resp) => {
+    const listaDeUsuarios = await usuario.listaUsuarios();
+    resp.send(listaDeUsuarios);
   });
 
-  app.get('/usuario/:email', (req, resp) => {
-    const email = req.params.email;
-    const usuarioSelecionados =  [];
-    for (let user of bd.usuario) {
-      if (email == user.email)
-        console.log(user)
-        usuarioSelecionados.push(user);
-        //resp.send(`Usuario encontrado:${user}`);
-    }
-    resp.send(usuarioSelecionados);
-    //bd.usuario.push(preencherBanco());
+  app.get('/usuario/:id', async (req, resp) => {
+    const id = req.params.id;
+    const usuarioPesquisado =  await usuario.pesquisaByEmail(id);
+    resp.send(usuarioPesquisado);
+  });
+
+  app.post('/usuario' , async (req,resp) => {
+    const newUsuario = req.body;
+    const resultadoAssincrono = await usuario.insereUsuario(newUsuario);
+    resp.send(resultadoAssincrono);
   });
 
 
-  app.post('/usuario', (req, resp) => {
-    const user = new Usuario(req.body.nome, req.body.email, req.body.senha);
-    //bd.usuario.push(preencherBanco());
-    resp.send("Rota ativada com POST");
+  app.delete('/usuario/:id', async (req, resp) => {
+    const id = req.params.id;
+    const usuarioDeletado = await usuario.deletaUsuario(id)
+    .then (usuarioDeletado => {
+      resp.send(usuarioDeletado);
+    })
+    .catch(error => {
+      resp.send(error);
+    });
   });
 
-  app.delete('/usuario/:email', (req, resp) => {
-    const email = req.params.email;
-    for (let i= 0; i< bd.usuario.length; i++) {
-      if (bd.usuario[i].email == email) {
-        bd.usuario.splice(i,1);
-        resp.send("<h3>Usuário excluído com sucesso</h3>")  
-      }
-    }
-  }) ; 
-
-  app.put('/usuario/:email', (req,resp) => {
-    const email = req.params.email;
-    for (let i = 0; i < bd.usuario.length; i++) {
-      if(bd.usuario[i].email == email) {
-        bd.usuario[i].nome = req.body.nome;
-        bd.usuario[i].senha = req.body.senha;
-        resp.send(`<h3>Registro: Nome e Senha do usuário com email ${email} foram atualizados</h3>`);
-      }
-    }
-  })
+  app.put('/usuario/:id', async (req,resp) => {
+    const id = req.params.id;
+    const updateUsuario = await usuario.updateUsuario(id,req.body)
+    .then(updateUsuario => {
+      resp.send(updateUsuario);
+    })
+    .catch(error => {
+      resp.send(error);
+    });
+  });
 
 
   }
