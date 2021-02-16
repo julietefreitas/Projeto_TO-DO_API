@@ -64,6 +64,21 @@ class TarefaDAO {
     });
   }
 
+  updateTarefa(id, body) {
+    return new Promise((resolve, reject) => {
+      this.bancoDeDados.run(
+        `UPDATE TAREFAS SET TITULO=?, DESCRICAO= ?,STATUS=? WHERE ID=?`,
+        [body.TITULO, body.DESCRICAO, body.STATUS, id],
+        (error) => {
+          if (error) reject(error);
+          if (this.changes == 0) {
+            reject(`Nenhuma alteração foi feita!`);
+          } else resolve(`Alteração feita com sucesso!`);
+        }
+      );
+    }); 
+  }
+
 }
 
 module.exports = TarefaDAO;

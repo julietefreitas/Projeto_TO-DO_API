@@ -1,4 +1,3 @@
-const Tarefa = require('../models/model-tarefa');
 const TarefaDAO = require('../DAO/tarefa-dao');
 const bd = require("../infra/sqlite-db");
 const TarefaBD = new TarefaDAO(bd);
@@ -59,5 +58,23 @@ class ControllerTarefa {
     };
   }
 
+  static alterarTarefa(){
+    return async(req,resp) => {
+      const id = req.params.id;
+      const erros = validationResult(req);
+      if(!erros.isEmpty()){
+        resp.send(`Parâmetros incorretos!<h3>${erros.errors[0].msg}</h3>`);
+      }else if (req.body.ID_USUARIO != undefined || req.body.DATACRIACAO != undefined){
+        resp.send(`Só é possível alterar TÍTULO, DESCRIÇÃO E STATUS da tarefa!`);
+      }
+      else {
+        const body = req.body;
+        const resultadoAssincrono = await TarefaBD.updateTarefa(id, body);
+        resp.send(resultadoAssincrono);
+      }
+    }
+  }
 }
+
+
  module.exports = ControllerTarefa;
