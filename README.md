@@ -2,6 +2,8 @@
 > É um projeto proposto pela Resilia Educação, que consiste na criação de uma API -- TO DO
 
 ## Inicialização do projeto
+É necessário ter o `nodejs` instalado em sua máquina.
+
 No cmd digite o comando `npm install` para baixar as dependências desse projeto. Após o download, use o comando `npm start` para iniciar.
 
 
