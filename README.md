@@ -6,4 +6,4 @@ No cmd digite o comando `npm install` para baixar as dependências desse projeto
 
 
 ## Rotas
-Nosso projeto foi feito usando o conceito de API REST com 4 verbos HTTP `GET, POST, PUT e DELETE` , utilizando-se de requisições à duas tabelas, que retornam informações do banco de dados:  **usuário** e **tarefa**.
+Nosso projeto foi feito usando o conceito de API REST com 4 verbos HTTP `GET, POST, PUT e DELETE` , utilizando-se de requisições à duas tabelas (**usuário** e **tarefa**), que retornam informações do banco de dados.
