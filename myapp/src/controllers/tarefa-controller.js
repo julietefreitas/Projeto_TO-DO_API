@@ -46,9 +46,15 @@ module.exports = (app, bd) => {
 
   static inserirTarefa() {
     return async(req,resp) =>{
-      const newTarefa = req.body;
-      const resultadoAssincrono = await TarefaBD.insereTarefa(newTarefa);
-      resp.send(resultadoAssincrono);
+      const erros = validationResult(req);
+      console.log(erros)
+      if(!erros.isEmpty()){
+        resp.send(`Parâmetros incorretos!<h3>${erros.errors[0].msg}</h3>`);
+      }else {
+        const newTarefa = req.body;
+        const resultadoAssincrono = await TarefaBD.insereTarefa(newTarefa);
+        resp.send(resultadoAssincrono);
+      }
     }
   }
 
