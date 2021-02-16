@@ -48,6 +48,22 @@ class TarefaDAO {
       );
     });
   }
+
+  deletaTarefa(id) {
+    return new Promise((resolve, reject) => {
+      this.bancoDeDados.run(
+        `DELETE FROM TAREFAS WHERE ID = ?`,
+        [id],
+        function (error) {
+          if (error) reject(error);
+          if (this.changes == 0) {
+            reject("Nenhuma Tarefa com esse identificador foi encontrada!");
+          } else resolve("Tarefa deletada com sucesso!");
+        }
+      );
+    });
+  }
+
 }
 
 module.exports = TarefaDAO;
