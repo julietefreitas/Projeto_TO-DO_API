@@ -23,16 +23,16 @@ Caso queira visualizar todos os clientes ou tarefas, retire o campo `id` da `url
 ### Método POST
 - Para inserir um **usuário**, você terá que usar a rota `http://localhost:8000/usuário` no método `POST` com os seguintes dados no corpo da requisição:
 
-```json
+``json
 {
 	NOME: "Exemplo",
 	EMAIL: "exemplo@exemplo.com",
 	SENHA: "exemplo"
 }
-```
+``
 - Para inserir uma **tarefa**, você terá que usar a rota `http://localhost:8000/tarefa` no método `POST` com os seguintes dados no corpo da requisição:
 
-```json
+``json
 {
 	TITULO: "Exemplo",
 	DESCRICAO: "exemplo@exemplo.com",
@@ -40,4 +40,4 @@ Caso queira visualizar todos os clientes ou tarefas, retire o campo `id` da `url
   DATACRICAO: "2021-02-16",
   ID_USUARIO: "1" 
 }
-```
+``
