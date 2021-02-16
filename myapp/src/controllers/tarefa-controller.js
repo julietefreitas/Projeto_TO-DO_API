@@ -35,12 +35,20 @@ module.exports = (app, bd) => {
     return async (req, resp) => {
       const id = req.params.id;
       const listaTarefaById = await TarefaBD.pesquisaById(id)
-      .then((tarefa) => {
-        resp.send(tarefa);
+      .then((listaTarefasById) => {
+        resp.send(listaTarefasById);
       })
       .catch((error) =>{
         resp.send(error);
       }); 
+    }
+  }
+
+  static inserirTarefa() {
+    return async(req,resp) =>{
+      const newTarefa = req.body;
+      const resultadoAssincrono = await TarefaBD.insereTarefa(newTarefa);
+      resp.send(resultadoAssincrono);
     }
   }
 
