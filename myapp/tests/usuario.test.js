@@ -5,8 +5,8 @@ test(`Rota GET de usuários`, ()=>{
   .get('/usuario')
   .expect(200)
   .then(response => {
-   // expect(response.body[0].ID).toBe(1);
-   // expect(response.body[0].NOME).toBe("Ana Lu");
+    expect(response.body[0].ID).toBe(1);
+    expect(response.body[0].NOME).toBe("Ana Lu");
     expect(response.body[0].EMAIL).toBe("eugenio.oliveira@bol.com.br");
     expect(response.body[0].SENHA).toBe("conforto");
   });
