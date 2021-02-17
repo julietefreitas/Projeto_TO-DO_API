@@ -23,16 +23,16 @@ Caso queira visualizar todos os clientes ou tarefas, retire o campo `id` da `url
 ### Método POST
 - Para inserir um **usuário**, você terá que usar a rota `http://localhost:8000/usuário` no método `POST` com os seguintes dados no corpo da requisição:
 
-``json
+```json
 {
 	NOME: "Exemplo",
 	EMAIL: "exemplo@exemplo.com",
 	SENHA: "exemplo"
 }
-``
+```
 - Para inserir uma **tarefa**, você terá que usar a rota `http://localhost:8000/tarefa` no método `POST` com os seguintes dados no corpo da requisição:
 
-``json
+```json
 {
 	TITULO: "Exemplo",
 	DESCRICAO: "exemplo@exemplo.com",
@@ -40,4 +40,17 @@ Caso queira visualizar todos os clientes ou tarefas, retire o campo `id` da `url
   DATACRICAO: "2021-02-16",
   ID_USUARIO: "1" 
 }
-``
+```
+### Método PUT
+- Para atualizar um **usuário**, será necessário acessar a rota `http://localhost:8000/usuario/:id` com o método `PUT` selecionado, substituindo o `:id` pelo identificador do usuário, com a mesma estrutura de dados do **método POST**. 
+OBS: Apenas os campos de `NOME`,`SENHA`,`EMAIL` devem ser informados no corpo da requisição.
+
+``json
+{
+	NOME:"Exemplo2",
+	EMAIL:"exemplo2@gmail.com",
+	SENHA:******
+}
+
+### Método DELETE
+- Para deletar um **cliente**, você terá que usar a rota `http://localhost:3000/usuario/:id` no método `DELETE`, substituindo o `:id` pelo identificador do usuário.
