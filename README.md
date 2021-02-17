@@ -54,4 +54,22 @@ OBS: Apenas os campos de `NOME`,`SENHA`,`EMAIL` devem ser informados no corpo da
 ```
 
 ### Método DELETE
-- Para deletar um **cliente**, você terá que usar a rota `http://localhost:3000/usuario/:id` no método `DELETE`, substituindo o `:id` pelo identificador do usuário.
+- Para deletar um **usuário**, você terá que usar a rota `http://localhost:8000/usuario/:id` no método `DELETE`, substituindo o `:id` pelo identificador do usuário.
+
+- Para deletar uma **tarefa**, você terá que usar a rota `http://localhost:8000/tarefa/:id` no método `DELETE`, substituindo o `:id` pelo identificador da tarefa.
+
+## Deploy
+Para hospedar gratuitamente nossa aplicação, utilizamos o Heroku. A API pode ser acessada através do link: + rota desejada.
+
+## Ferramentas utilizadas
+- nodejs
+- express
+- express-validator
+- body-parser
+- sqlite3
+- cors
+- jest
+- supertest
+
+## Autora 
+ - [Juliete de Freitas](https://www.linkedin.com/in/juliete-freitas/)
