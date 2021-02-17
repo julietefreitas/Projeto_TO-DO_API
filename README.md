@@ -37,8 +37,8 @@ Caso queira visualizar todos os clientes ou tarefas, retire o campo `id` da `url
 	TITULO: "Exemplo",
 	DESCRICAO: "exemplo@exemplo.com",
 	STATUS: "exemplo",
-      DATACRICAO: "2021-02-16",
-      ID_USUARIO: "1" 
+        DATACRICAO: "2021-02-16",
+        ID_USUARIO: "1" 
 }
 ```
 ### Método PUT
@@ -49,7 +49,7 @@ OBS: Apenas os campos de `NOME`,`SENHA`,`EMAIL` devem ser informados no corpo da
 {
 	NOME:"Exemplo2",
 	EMAIL:"exemplo2@gmail.com",
-	SENHA:******
+	SENHA: "******" 
 }
 ```
 
