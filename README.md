@@ -59,7 +59,7 @@ OBS: Apenas os campos de `NOME`,`SENHA`,`EMAIL` devem ser informados no corpo da
 - Para deletar uma **tarefa**, você terá que usar a rota `http://localhost:8000/tarefa/:id` no método `DELETE`, substituindo o `:id` pelo identificador da tarefa.
 
 ## Deploy
-Para hospedar gratuitamente nossa aplicação, utilizamos o Heroku. A API pode ser acessada através do link: + rota desejada.
+Para hospedar gratuitamente nossa aplicação, utilizamos o Heroku. A API pode ser acessada através do link:[https://dry-eyrie-35502.herokuapp.com/] + rota desejada.
 
 ## Ferramentas utilizadas
 - nodejs
