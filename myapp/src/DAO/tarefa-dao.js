@@ -23,8 +23,8 @@ class TarefaDAO {
         (error, resultadoPesquisa) => {
           if (error) reject(`Tarefa não encontrada`);
           else if (resultadoPesquisa == undefined) {
-            reject(`Esta tarefa não existe no banco`);
-          } else resolve(resultadoPesquisa);
+            reject(`A tarefa com esse identificador não existe no banco!`);
+          }else resolve(resultadoPesquisa);
         }
       );
     });
