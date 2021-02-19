@@ -8,39 +8,45 @@ class ControllerTarefa {
    
   static listarTarefas(){
     return async (req, resp) => {
-      const listaDeTarefas = await TarefaBD.listaTarefas()
-      .then((listaDeTarefas) => {
-        resp.send(listaDeTarefas);
-      })
-      .catch((error) =>{
-        resp.send(error);
-      });
+      const listaDeTarefas = await TarefaBD.listaTarefas();
+      try{
+        const listaDeTarefas = await TarefaBD.listaTarefas();
+        resp.status(200).send(listaDeTarefas);
+      }
+      catch(err){
+        resp.send(err);
+      }
     }  
   }
 
   static listarTarefasById() {
     return async (req, resp) => {
       const id = req.params.id;
-      const listaTarefaById = await TarefaBD.pesquisaById(id)
-      .then((listaTarefasById) => {
-        resp.send(listaTarefasById);
-      })
-      .catch((error) =>{
-        resp.send(error);
-      }); 
+      try{
+        const listaTarefaById = await TarefaBD.pesquisaById(id);
+        resp.status(200).send(listaTarefaById);
+      }
+      catch(err){
+        resp.send(err);
+      }
+      
     }
   }
 
   static inserirTarefa() {
     return async(req,resp) =>{
       const erros = validationResult(req);
-      console.log(erros) // tirar
       if(!erros.isEmpty()){
         resp.send(`Parâmetros incorretos!<h3>${erros.errors[0].msg}</h3>`);
       }else {
-        const newTarefa = req.body;
-        const resultadoAssincrono = await TarefaBD.insereTarefa(newTarefa);
-        resp.send(resultadoAssincrono);
+        try{
+          const newTarefa = req.body;
+          const resultadoAssincrono = await TarefaBD.insereTarefa(newTarefa);
+          resp.send(resultadoAssincrono);
+        }
+        catch(err){
+          resp.send(err);
+        }
       }
     }
   }
@@ -48,14 +54,14 @@ class ControllerTarefa {
   static deletarTarefa() {
     return async (req, resp) => {
       const id = req.params.id;
-      const tarefaDeletada = await TarefaBD.deletaTarefa(id)
-        .then((tarefaDeletada) => {
+        try{
+          const tarefaDeletada = await TarefaBD.deletaTarefa(id);
           resp.send(tarefaDeletada);
-        })
-        .catch((error) => {
-          resp.send(error);
-        });
-    };
+        }
+        catch(err){
+          resp.send(err);
+        }
+    }
   }
 
   static alterarTarefa(){
@@ -68,9 +74,14 @@ class ControllerTarefa {
         resp.send(`Só é possível alterar TÍTULO, DESCRIÇÃO E STATUS da tarefa!`);
       }
       else {
-        const body = req.body;
-        const resultadoAssincrono = await TarefaBD.updateTarefa(id, body);
-        resp.send(resultadoAssincrono);
+        try{
+          const body = req.body;
+          const resultadoAssincrono = await TarefaBD.updateTarefa(id, body);
+          resp.send(resultadoAssincrono);
+        }
+        catch(err){
+          resp.send(err);
+        }
       }
     }
   }
