@@ -1,6 +1,6 @@
 const supertest = require('supertest');
 
-test(`Rota GET de usuários`, ()=>{
+ test(`Rota GET de usuários`, ()=>{
   supertest('http://localhost:8000')
   .get('/usuario')
   .expect(200)
@@ -23,3 +23,4 @@ test(`Rota GET de usuários com parâmetro`, ()=>{
     expect(response.body[1].SENHA).toBe("********");
   });
 });
+
