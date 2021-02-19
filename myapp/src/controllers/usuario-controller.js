@@ -21,10 +21,10 @@ class ControllerUsuario {
       const id = req.params.id;
       try{
         const listaUsuarioById = await UsuarioBD.pesquisaById(id);
-        resp.send(listaUsuarioById);
+        resp.status(200).send(listaUsuarioById);
       }
-      catch (err){
-          resp.status(200).send(err);
+      catch(err){
+          resp.status.send(err);
         }
     };
   }
@@ -32,17 +32,16 @@ class ControllerUsuario {
   static inserirUsuario() {
     return async (req, resp) => {
       const erros = validationResult(req);
-      if (!erros.isEmpty()) {
-        resp.status(200).send(`Parâmetros incorretos!<h3>${erros.errors[0].msg}!</h3>Usuário não inserido!`);
-      } else {
-        try{
-          const newUsuario = req.body;
-          const resultadoAssincrono = await UsuarioBD.insereUsuario(newUsuario);
-          resp.send(resultadoAssincrono);
-        }
-        catch(err){
-          resp.send(err)
-        }
+      if(!erros.isEmpty()) {
+        resp.send(`Parâmetros incorretos!<h3>${erros.errors[0].msg}!</h3>Usuário não inserido!`);
+      } else{
+          try{
+            const newUsuario = req.body;
+            const resultadoAssincrono = await UsuarioBD.insereUsuario(newUsuario);
+            resp.send(resultadoAssincrono);
+          } catch(err) {
+            resp.send(err);
+          }
       }
     };
   }

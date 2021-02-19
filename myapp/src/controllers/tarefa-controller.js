@@ -8,7 +8,6 @@ class ControllerTarefa {
    
   static listarTarefas(){
     return async (req, resp) => {
-      const listaDeTarefas = await TarefaBD.listaTarefas();
       try{
         const listaDeTarefas = await TarefaBD.listaTarefas();
         resp.status(200).send(listaDeTarefas);
@@ -29,7 +28,6 @@ class ControllerTarefa {
       catch(err){
         resp.send(err);
       }
-      
     }
   }
 
@@ -54,13 +52,13 @@ class ControllerTarefa {
   static deletarTarefa() {
     return async (req, resp) => {
       const id = req.params.id;
-        try{
-          const tarefaDeletada = await TarefaBD.deletaTarefa(id);
-          resp.send(tarefaDeletada);
-        }
-        catch(err){
-          resp.send(err);
-        }
+      try{
+        const tarefaDeletada = await TarefaBD.deletaTarefa(id);
+        resp.send(tarefaDeletada);
+      }
+      catch(err){
+        resp.send(err);
+      }
     }
   }
 
@@ -73,7 +71,7 @@ class ControllerTarefa {
       }else if (req.body.ID_USUARIO != undefined || req.body.DATACRIACAO != undefined){
         resp.send(`Só é possível alterar TÍTULO, DESCRIÇÃO E STATUS da tarefa!`);
       }
-      else {
+      else{
         try{
           const body = req.body;
           const resultadoAssincrono = await TarefaBD.updateTarefa(id, body);
